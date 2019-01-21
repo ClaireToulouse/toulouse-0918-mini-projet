@@ -9,15 +9,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={
-      products: products
+      products: products,
+      nextId: 1
     }
     this.addProduct=this.addProduct.bind(this);
   }
 
-  addProduct(product) {
-    this.setState(prevState => ({
-      products: [...prevState.products, product]
-    }));
+  addProduct(productData) {
+    this.setState(prevState => {
+      const { products, nextId } = prevState;
+      const product = { ...productData, id: nextId };
+      return {
+        products: [...products, product],
+        nextID: nextId + 1
+      }
+    });
   }
 
   render() {
