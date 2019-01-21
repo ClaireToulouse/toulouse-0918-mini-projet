@@ -3,6 +3,7 @@ import './App.css';
 import ProductList from './components/ProductList';
 import products from './data/products.json';
 import ProductForm from './containers/ProductForm';
+import { Route, Switch, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
@@ -23,8 +24,28 @@ class App extends Component {
     const { products } = this.state;
     return (
       <div className="App">
-      <ProductForm addProduct={this.addProduct}/>
-      <ProductList products={products}/>
+        <ul>
+          <li>
+            <Link to="/">Produits</Link>
+          </li>
+          <li>
+            <Link to="/new">Créer un produit</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => <ProductList {... props}
+            products={products}/>} 
+          />
+          <Route
+            path="/new"
+            exact
+            render={props => <ProductForm {... props}
+            addProduct={this.addProduct}/>} 
+          />
+        </Switch>
       </div>
     );
   }
