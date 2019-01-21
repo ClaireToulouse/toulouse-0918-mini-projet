@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ProductList from './components/ProductList';
+import products from './data/products.json';
+import ProductForm from './containers/ProductForm';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      products: products
+    }
+    this.addProduct=this.addProduct.bind(this);
+  }
+
+  addProduct(product) {
+    this.setState(prevState => ({
+      products: [...prevState.products, product]
+    }));
+  }
+
   render() {
+    const { products } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <ProductForm addProduct={this.addProduct}/>
+      <ProductList products={products}/>
       </div>
     );
   }
