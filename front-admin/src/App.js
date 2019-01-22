@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import Menu from './components/Menu';
 import ProductList from './components/ProductList';
-import products from './data/products.json';
+// import products from './data/products.json';
 import CreateProduct from './containers/CreateProduct';
 import ProductDetails from './components/ProductDetails';
 import { Route, Switch } from 'react-router-dom';
+import axios from 'axios';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import {
 //   faBicycle
@@ -13,15 +14,24 @@ import { Route, Switch } from 'react-router-dom';
 
 // library.add(faBicycle);
 
-
 class App extends Component {
   constructor(props) {
     super(props);
     this.state={
-      products: products,
+      products: [],
       nextId: 1
     }
     this.addProduct=this.addProduct.bind(this);
+  }
+
+  componentDidMount(){
+    axios.get('/api/products')
+    .then(response => response.data)
+    .then(products => 
+      this.setState({
+        products
+      })
+    );
   }
 
   addProduct(productData) {

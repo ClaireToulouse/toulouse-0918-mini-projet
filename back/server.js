@@ -8,7 +8,7 @@ const port = process.env.port || 2345;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
-app.use('api/products', productsRouter);
+app.use('/api/products', productsRouter);
 
 app.listen(port, (err) => {
   if (err) {
