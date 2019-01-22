@@ -3,7 +3,7 @@ import './App.css';
 import Menu from './components/Menu';
 import ProductList from './components/ProductList';
 import products from './data/products.json';
-import ProductForm from './containers/ProductForm';
+import CreateProduct from './containers/CreateProduct';
 import ProductDetails from './components/ProductDetails';
 import { Route, Switch } from 'react-router-dom';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -52,7 +52,7 @@ class App extends Component {
           <Route
             path="/new"
             exact
-            render={props => <ProductForm {... props} addProduct={this.addProduct} />} 
+            render={props => <CreateProduct {... props} addProduct={this.addProduct} />} 
           />
 
           <Route
@@ -60,13 +60,10 @@ class App extends Component {
             render={props => <ProductDetails {... props} />}
           />
 
-          /* <Route
+          <Route
             path="/orders"
             exact
-            render={props => <ProductForm {... props}
-            addProduct={this.addProduct}/>} 
-          /> */
-
+          />
         </Switch>
       </div>
     );

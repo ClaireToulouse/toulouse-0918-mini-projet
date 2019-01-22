@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
-class ProductForm extends Component {
+class CreateProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,4 +134,4 @@ class ProductForm extends Component {
     )
   }
 }
-export default ProductForm;
+export default CreateProduct;
