@@ -5,7 +5,7 @@ import ProductList from './components/ProductList';
 import products from './data/products.json';
 import ProductForm from './containers/ProductForm';
 import ProductDetails from './components/ProductDetails';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import {
 //   faBicycle
