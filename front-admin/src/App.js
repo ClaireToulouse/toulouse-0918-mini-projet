@@ -4,6 +4,7 @@ import Menu from './components/Menu';
 import ProductList from './components/ProductList';
 import products from './data/products.json';
 import ProductForm from './containers/ProductForm';
+import ProductDetails from './components/ProductDetails';
 import { Route, Switch, Link } from 'react-router-dom';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import {
@@ -40,24 +41,31 @@ class App extends Component {
       <div className="App">
         <Menu />
         <Switch>
+
           <Route
             path="/"
             exact
             render={props => <ProductList {... props}
             products={products}/>} 
           />
+
           <Route
             path="/new"
             exact
-            render={props => <ProductForm {... props}
-            addProduct={this.addProduct}/>} 
+            render={props => <ProductForm {... props} addProduct={this.addProduct} />} 
           />
-          {/* <Route
+
+          <Route
+            path="/product/:slug"
+            render={props => <ProductDetails {... props} />}
+          />
+
+          /* <Route
             path="/orders"
             exact
             render={props => <ProductForm {... props}
             addProduct={this.addProduct}/>} 
-          /> */}
+          /> */
 
         </Switch>
       </div>
