@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
+import Menu from './components/Menu';
 import ProductList from './components/ProductList';
 import products from './data/products.json';
 import ProductForm from './containers/ProductForm';
 import { Route, Switch, Link } from 'react-router-dom';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import {
+//   faBicycle
+// } from '@fortawesome/free-solid-svg-icons';
+
+// library.add(faBicycle);
+
 
 class App extends Component {
   constructor(props) {
@@ -30,14 +38,7 @@ class App extends Component {
     const { products } = this.state;
     return (
       <div className="App">
-        <ul>
-          <li>
-            <Link to="/">Produits</Link>
-          </li>
-          <li>
-            <Link to="/new">Créer un produit</Link>
-          </li>
-        </ul>
+        <Menu />
         <Switch>
           <Route
             path="/"
@@ -51,6 +52,13 @@ class App extends Component {
             render={props => <ProductForm {... props}
             addProduct={this.addProduct}/>} 
           />
+          {/* <Route
+            path="/orders"
+            exact
+            render={props => <ProductForm {... props}
+            addProduct={this.addProduct}/>} 
+          /> */}
+
         </Switch>
       </div>
     );
