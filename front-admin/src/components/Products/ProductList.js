@@ -13,7 +13,7 @@ class ProductList extends Component {
               <Col lg="4" md="6" sm="12">
                 <ProductPreview
                   key={product.id}
-                  {...product}
+                  product={product}
                 />
               </Col>
             )

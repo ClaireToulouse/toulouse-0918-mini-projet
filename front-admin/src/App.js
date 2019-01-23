@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Menu from './components/Menu';
-import ProductList from './components/ProductList';
+import ProductList from './components/Products/ProductList';
 // import products from './data/products.json';
 import CreateProduct from './containers/CreateProduct';
-import ProductDetails from './components/ProductDetails';
+import ProductDetails from './components/Products/ProductDetails';
 import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 // import { library } from '@fortawesome/fontawesome-svg-core';
