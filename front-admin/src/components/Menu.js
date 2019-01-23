@@ -32,13 +32,13 @@ class Menu extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink to="/" tag={Link}>Tous nos vélos</NavLink>
+                <NavLink to="/" tag={Link}>Nos vélos</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/new" tag={Link}>Créer un nouveau produit</NavLink>
+                <NavLink to="/new" tag={Link}>Créer un produit</NavLink>
               </NavItem>
               <NavItem>
-              <NavLink to="/orders" tag={Link}>Historique des commandes</NavLink>
+              <NavLink to="/orders" tag={Link}>Commandes</NavLink>
               </NavItem>
               <NavItem>
               <NavLink to="/unsubscribe" tag={Link}>Déconnexion</NavLink>
