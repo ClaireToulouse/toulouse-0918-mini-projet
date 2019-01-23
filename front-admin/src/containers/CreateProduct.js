@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
+import axios from 'axios';
 
 class CreateProduct extends Component {
   constructor(props) {
@@ -7,12 +8,13 @@ class CreateProduct extends Component {
     this.state = {
       label: "",
       description: "",
-      price: "",
+      price: null,
       brand: "",
       picture: "",
-      reference: "",
-      stock: "",
-      createDate: ""
+      reference: null,
+      stock: null,
+      createDate: "",
+      slug: ""
     }
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -28,14 +30,24 @@ class CreateProduct extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { addProduct } = this.props;
-    addProduct(this.state);
-    this.setState({
-      label: "", description: "", price: "", brand: "", picture: "", reference: "", stock: "", createDate: ""
-    });
+    const {
+      label, description, price, brand, picture, reference, stock, createDate, slug
+    } = this.state;
+    axios.post('/api/products', {
+      label, description, price, brand, picture, reference, stock, createDate, slug
+    })
+    .then(response => response.data)
+    .then(product => {
+      addProduct(product);
+      this.setState({
+        label: "", description: "", price: "", brand: "", picture: "", reference: "", stock: "", createDate: "", slug: ""
+      })
+    }
+    );
   }
 
   render() {
-    const { label, description, price, brand, picture, reference, stock, createDate } = this.state;
+    const { label, description, price, brand, picture, reference, stock, createDate, slug } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -119,11 +131,22 @@ class CreateProduct extends Component {
           <InputGroup>
             <InputGroupAddon addonType="prepend">Date création produit</InputGroupAddon>
             <Input
-            placeholder="xx/xx/xxxx"
+            placeholder="aaaa-mm-jj"
             type="text"
             name="createDate"
             onChange={this.handleChange}
             value={createDate}          
+            />
+          </InputGroup>
+          <br />
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">Slug</InputGroupAddon>
+            <Input
+            placeholder="xxx"
+            type="text"
+            name="slug"
+            onChange={this.handleChange}
+            value={slug}          
             />
           </InputGroup>
           <br />
