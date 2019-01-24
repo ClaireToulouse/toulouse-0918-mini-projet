@@ -23,10 +23,8 @@ const reducer = (state=initialState, action) => {
         products
       }
     }
-    
     default:
     return state;
-
   }
 };
 
