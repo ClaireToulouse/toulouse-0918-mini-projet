@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addProduct } from '../actions';
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 import axios from 'axios';
 
@@ -30,10 +32,10 @@ class CreateProduct extends Component {
     event.preventDefault();
     const { addProduct } = this.props;
     const {
-      label, description, price, brand, picture, reference, stock, createDate, slug
+      label, description, price, brand, picture, reference, stock, slug
     } = this.state;
     axios.post('/api/products', {
-      label, description, price, brand, picture, reference, stock, createDate, slug
+      label, description, price, brand, picture, reference, stock, slug
     })
     .then(response => response.data)
     .then(product => {
@@ -65,7 +67,7 @@ class CreateProduct extends Component {
             <InputGroupAddon addonType="prepend">Description produit</InputGroupAddon>
             <Input 
             placeholder="xxx"
-            type="text"
+            type="textarea"
             name="description"
             onChange={this.handleChange}
             value={description}
@@ -75,7 +77,7 @@ class CreateProduct extends Component {
           <InputGroup>
             <InputGroupAddon addonType="prepend">Prix</InputGroupAddon>
             <Input 
-            placeholder="xxx euros"
+            placeholder="xxx"
             type="text"
             name="price"
             onChange={this.handleChange}
@@ -108,7 +110,7 @@ class CreateProduct extends Component {
           <InputGroup>
             <InputGroupAddon addonType="prepend">Référence produit</InputGroupAddon>
             <Input 
-            placeholder="0000000"
+            placeholder="url"
             type="text"
             name="reference"
             onChange={this.handleChange}
@@ -145,4 +147,10 @@ class CreateProduct extends Component {
     )
   }
 }
-export default CreateProduct;
+
+const mapDispatchToProps = dispatch => ({
+  addProduct: (label, description, price, brand, picture, reference, stock, slug) => 
+    dispatch(addProduct(label, description, price, brand, picture, reference, stock, slug))
+});
+
+export default connect(null, mapDispatchToProps)(CreateProduct);

@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // const { slugorID } = req.params;
   const productSlug = req.params.id;
   db.query('SELECT * FROM products WHERE slug = ?', [productSlug], (err, results) => {
     if (err) {
@@ -30,12 +29,17 @@ router.post('/', (req, res) => {
   const newProduct = req.body;
   db.query('INSERT INTO products SET ?', [newProduct], (err, results) => {
     if (err) {
-      res.status(500).send(`Impossible de créer la produit ${newProduct}`);
+      return res.status(500).json({
+        err: err.message,
+        details: err.sql,
+        message: 'Impossible de créer le produit'
+      });
     }
-    res.status(201).send('votre produit a bien été ajouté');
-    // db.query('SELECT * FROM products', product => {
-    //   res.json(product);
-    // });
+    console.log(results);
+    const productId = results.insertId;
+    db.query('SELECT * FROM products WHERE id= ?', [productId], (err, products) => {
+      res.status(201).json(products[0]);
+    });
   });
 });
 

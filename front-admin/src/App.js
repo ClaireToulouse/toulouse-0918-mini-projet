@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import { connect } from 'react-redux';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import axios from 'axios';
 import Menu from './components/Menu';
-import ProductList from './components/Products/ProductList';
+import ProductListContainer from './containers/ProductListContainer';
 import CreateProduct from './containers/CreateProduct';
 import ProductDetails from './components/Products/ProductDetails';
-import { Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { fetchAllProducts } from './actions';
+import './App.css';
+
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import {
 //   faBicycle
@@ -14,39 +17,17 @@ import axios from 'axios';
 // library.add(faBicycle);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state={
-      // state transféré à l'initial state du reducer:
-      products: [],
-      nextId: 1
-    }
-    this.addProduct=this.addProduct.bind(this);
-  }
 
   componentDidMount(){
+    const { fetchAllProducts } = this.props;
     axios.get('/api/products')
     .then(response => response.data)
     .then(products => 
-      this.setState({
-        products
-      })
+      fetchAllProducts(products)
     );
-  }
-// Permet d'ajouter 
-  addProduct(productData) {
-    this.setState(prevState => {
-      const { products, nextId } = prevState;
-      const product = { ...productData, id: nextId };
-      return {
-        products: [...products, product],
-        nextID: nextId + 1
-      }
-    });
   }
 
   render() {
-    const { products } = this.state;
     return (
       <div className="App">
         <Menu />
@@ -55,19 +36,18 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={props => <ProductList {... props}
-            products={products}/>} 
+            component={ProductListContainer} 
           />
 
           <Route
             path="/new"
             exact
-            render={props => <CreateProduct {... props} addProduct={this.addProduct} />} 
+            render={props => <CreateProduct {...props} />} 
           />
 
           <Route
             path="/product/:slug"
-            render={props => <ProductDetails {... props} />}
+            render={props => <ProductDetails {...props} />}
           />
 
           <Route
@@ -80,4 +60,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  fetchAllProducts: products => dispatch(fetchAllProducts(products))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(App));
