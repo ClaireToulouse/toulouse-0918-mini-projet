@@ -14,13 +14,16 @@ const reducer = (state=initialState, action) => {
     case FETCH_ALL_PRODUCTS: {
       const { products } = action
       return {
+        ...state,
         products
       }
     }
     case ADD_TO_CART: {
       const { quantity, id } = action;
+      const cart = [...state.cart, {quantity, id}];
       return {
-        quantity, id
+        ...state,
+        cart
       }
     }
     default:

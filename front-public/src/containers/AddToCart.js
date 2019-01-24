@@ -47,7 +47,7 @@ class AddToCart extends Component {
             </Col>
             <Col lg="6">
               <Button
-                onClick={addToCart(count, id)}
+                onClick={() => addToCart(count, id)}
                 style={{ color: 'white', backgroundColor: 'green', border: 'none' }}
               >Ajouter au panier</Button>
             </Col>
@@ -58,7 +58,7 @@ class AddToCart extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: id => dispatch(addToCart(id))
+  addToCart: (count, id) => dispatch(addToCart(count, id))
 })
 
 export default connect(null, mapDispatchToProps)(AddToCart);

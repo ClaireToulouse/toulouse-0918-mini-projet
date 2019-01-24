@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class Cart extends Component {
-  render() {
-    const { cart } = this.props;
-    return(
-      <div>TEST{cart}</div> 
-    )
-  }
-}
+const Cart = ({ cart }) => (
+  <div>
+    TEST {cart}
+  </div> 
+);
 
 const mapStateToProps = state => ({
   cart: state.cart
