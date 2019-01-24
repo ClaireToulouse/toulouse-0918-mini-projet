@@ -13,7 +13,6 @@ class CreateProduct extends Component {
       picture: "",
       reference: null,
       stock: null,
-      createDate: "",
       slug: ""
     }
     this.handleChange=this.handleChange.bind(this);
@@ -40,14 +39,14 @@ class CreateProduct extends Component {
     .then(product => {
       addProduct(product);
       this.setState({
-        label: "", description: "", price: "", brand: "", picture: "", reference: "", stock: "", createDate: "", slug: ""
+        label: "", description: "", price: "", brand: "", picture: "", reference: "", stock: "", slug: ""
       })
     }
     );
   }
 
   render() {
-    const { label, description, price, brand, picture, reference, stock, createDate, slug } = this.state;
+    const { label, description, price, brand, picture, reference, stock, slug } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -125,17 +124,6 @@ class CreateProduct extends Component {
             name="stock"
             onChange={this.handleChange}
             value={stock}          
-            />
-          </InputGroup>
-          <br />
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Date création produit</InputGroupAddon>
-            <Input
-            placeholder="aaaa-mm-jj"
-            type="text"
-            name="createDate"
-            onChange={this.handleChange}
-            value={createDate}          
             />
           </InputGroup>
           <br />

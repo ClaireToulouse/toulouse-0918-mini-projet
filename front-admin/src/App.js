@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Menu from './components/Menu';
 import ProductList from './components/Products/ProductList';
-// import products from './data/products.json';
 import CreateProduct from './containers/CreateProduct';
 import ProductDetails from './components/Products/ProductDetails';
 import { Route, Switch } from 'react-router-dom';
@@ -18,6 +17,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={
+      // state transféré à l'initial state du reducer:
       products: [],
       nextId: 1
     }
@@ -33,7 +33,7 @@ class App extends Component {
       })
     );
   }
-
+// Permet d'ajouter 
   addProduct(productData) {
     this.setState(prevState => {
       const { products, nextId } = prevState;
