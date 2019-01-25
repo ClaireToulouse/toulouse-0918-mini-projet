@@ -47,7 +47,9 @@ class AddToCart extends Component {
             </Col>
             <Col lg="6">
               <Button
-                onClick={() => addToCart(count, id)}
+                onClick={
+                  () => addToCart(count, id)
+                }
                 style={{ color: 'white', backgroundColor: 'green', border: 'none' }}
               >Ajouter au panier</Button>
             </Col>

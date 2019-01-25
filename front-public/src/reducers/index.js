@@ -1,21 +1,28 @@
 import {
   FETCH_ALL_PRODUCTS,
-  ADD_TO_CART
+  ADD_TO_CART,
 } from '../actions';
 
 //copie de l'ancien de state de App.js
 const initialState = {
   products: [],
+  brands: [],
   cartItems: []
 }
 
 const reducer = (state=initialState, action) => {
   switch(action.type) {
     case FETCH_ALL_PRODUCTS: {
-      const { products } = action
+      const { products } = action;
+      const brands = products.reduce(
+        (carry, product) => 
+        carry.includes(product.brand) ? carry : [...carry, product.brand],
+        []
+      )
       return {
         ...state,
-        products
+        products,
+        brands
       }
     }
     case ADD_TO_CART: {
@@ -26,6 +33,7 @@ const reducer = (state=initialState, action) => {
         cartItems
       }
     }
+
     default:
     return state;
   }
