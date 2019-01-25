@@ -26,6 +26,12 @@ class ProductDetails extends Component {
     const { label, picture, description, price, id, specs } = this.state.product;
     return(
       <Container>
+        <p
+          onClick={() => this.props.history.goBack()}
+          className="hover d-inline-flex d-flex align-items-center px-2"
+          style={{ cursor: 'pointer'}}>
+          &larr;<small> Retour</small>
+        </p>
         <Row d-flex align-items-center>
           <Col md="6">
             <img key={id} src={picture} alt={label} width="100%"/>

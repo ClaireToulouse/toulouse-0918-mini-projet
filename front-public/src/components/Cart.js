@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Row, Col } from 'reactstrap';
 
-const Cart = ({ selectedProducts }) => (
+const Cart = ({ selectedProducts, history }) => (
   <Table hover>
       <thead>
         <tr>
@@ -17,8 +17,8 @@ const Cart = ({ selectedProducts }) => (
       <tbody>
         {
           selectedProducts.map((selectedProduct, index) =>
-            <tr key={index}>
-              <Link to={`/product/${selectedProduct.slug}`}/>
+            <tr key={index}
+            onClick={()=>history.push(`/product/${selectedProduct.slug}`)}>
               <th scope="row">{index+1}</th>
               <td>{selectedProduct.quantity}</td>
               <td>
@@ -36,6 +36,7 @@ const Cart = ({ selectedProducts }) => (
         }
       </tbody>
   </Table>
+
 );
 
-export default Cart;
+export default withRouter(Cart);
