@@ -6,7 +6,7 @@ import {
 //copie de l'ancien de state de App.js
 const initialState = {
   products: [],
-  cart: []
+  cartItems: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -20,10 +20,10 @@ const reducer = (state=initialState, action) => {
     }
     case ADD_TO_CART: {
       const { quantity, id } = action;
-      const cart = [...state.cart, {quantity, id}];
+      const cartItems = [...state.cartItems, {quantity, id}];
       return {
         ...state,
-        cart
+        cartItems
       }
     }
     default:

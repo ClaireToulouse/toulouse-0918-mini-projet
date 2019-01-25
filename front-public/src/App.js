@@ -4,7 +4,7 @@ import FetchProducts from './containers/FetchProducts';
 import ProductDetails from './components/Products/ProductDetails';
 import Menu from './components/Menu';
 import ProductListContainer from './containers/ProductListContainer';
-import Cart from './containers/Cart';
+import CartContainer from './containers/CartContainer';
 
 import './App.css';
 
@@ -31,7 +31,7 @@ class App extends Component {
           <Route
             path="/cart"
             exact
-            component={Cart}
+            component={CartContainer}
           />
 
         </Switch>
