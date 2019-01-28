@@ -10,9 +10,8 @@ class ProductList extends Component {
         <Row className="d-flex justify-content-around">
           {
             products.map(product =>
-              <Col lg="4" md="6" sm="12">
+              <Col lg="4" md="6" sm="12" key={product.id}>
                 <ProductPreview
-                  key={product.id}
                   product={product}
                 />
               </Col>

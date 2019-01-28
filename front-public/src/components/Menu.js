@@ -6,9 +6,15 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem 
   } from 'reactstrap';
+  import { connect } from 'react-redux';
   import { Link } from 'react-router-dom';
+  import { filterByBrand } from '../actions';
 
 class Menu extends Component {
   constructor(props) {
@@ -23,7 +29,9 @@ class Menu extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
+    const {brands, filterByBrand} = this.props;
     return (
       <div>
         <Navbar color="light" light expand="md">
@@ -31,6 +39,20 @@ class Menu extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>
+                    Filtrer par marque
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    {
+                      brands.map((brand, index) => (
+                        <DropdownItem 
+                        key={index}
+                        onClick={() => filterByBrand(brand)}>{brand}</DropdownItem>
+                      ))
+                    }
+                  </DropdownMenu>
+                </UncontrolledDropdown>
               <NavItem>
                 <NavLink to="/" tag={Link}>Tous les vélos</NavLink>
               </NavItem>
@@ -48,4 +70,13 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+const mapStateToProps = state => ({
+  products: state.products,
+  brands: state.brands
+})
+
+const mapDispatchToProps = dispatch => ({
+  filterByBrand: brand => dispatch(filterByBrand(brand))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
