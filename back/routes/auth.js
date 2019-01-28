@@ -1,6 +1,10 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const { secretKey } = require('../secretKey.json');
+const db = require('../db');
+
+const saltRounds = 10;
 
 const router = express.Router();
 
@@ -27,6 +31,33 @@ router.get('/confidential-info', checkAuthorizationHeader, (req, res) => {
     { id: 1, accountKey: '22121975' }
   ]);
 });
+
+router.post('/signup', (req, res) => {
+  // 1. je recup infos de login
+  const { email, password } = req.body;
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      return res.status(500).json({
+        error: err.message
+      });
+    }
+    // récupérer le passw crypté dans hash
+    const user = {
+      email, password: hash
+    };
+    db.query('INSERT INTO user SET ?', user, (error, result) => {
+      if (error) {
+        return res.status(500).json({
+          error: error.message
+        });
+      }
+      res.json({
+        id: result.insertId
+      });
+    });
+  });
+});
+
 
 router.post('/signin', (req, res) => {
   // 1. je recup infos de login

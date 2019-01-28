@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
 app.use('/api/products', productsRouter);
-app.use('/api/auth', authRouter);
+app.use('/auth', authRouter);
 // app.get('/api/confidential-info', checkAuthorizationHeader, (req, res) => {
 //   res.json([
 //     { id: 1, accountKey: '22121975' }
