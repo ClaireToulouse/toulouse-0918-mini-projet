@@ -16,23 +16,28 @@ class App extends Component {
         <Menu />
         <Switch>
           <Route
-              path="/"
-              exact
-              component={ProductListContainer} 
-            />
-            <Route
-              path="/product/:slug"
-              render={props => <ProductDetails {...props} />}
-            />
-            <Route
-              path="/orders"
-              exact
-            />
-            <Route
-              path="/cart"
-              exact
-              component={CartContainer}
-            />
+            path="/"
+            exact
+            component={ProductListContainer}
+          />
+          <Route
+            path="/all"
+            exact
+            component={ProductListContainer}
+          />
+          <Route
+            path="/product/:slug"
+            render={props => <ProductDetails {...props} />}
+          />
+          <Route
+            path="/orders"
+            exact
+          />
+          <Route
+            path="/cart"
+            exact
+            component={CartContainer}
+          />
         </Switch>
       </div>
     );

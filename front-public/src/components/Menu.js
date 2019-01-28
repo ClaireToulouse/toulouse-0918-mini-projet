@@ -35,7 +35,7 @@ class Menu extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand to="/" tag={Link}>MonVéloElectrique</NavbarBrand>
+          <NavbarBrand >MonVéloElectrique</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -51,11 +51,11 @@ class Menu extends Component {
                         onClick={() => filterByBrand(brand)}>{brand}</DropdownItem>
                       ))
                     }
+                    <DropdownItem
+                      onClick={() => filterByBrand('')}><strong>Tous nos vélos</strong>  
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-              <NavItem>
-                <NavLink to="/" tag={Link}>Tous les vélos</NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink to="/orders" tag={Link}>Mes commandes</NavLink>
               </NavItem>
