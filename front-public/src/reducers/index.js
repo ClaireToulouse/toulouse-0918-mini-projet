@@ -1,7 +1,8 @@
 import {
   FETCH_ALL_PRODUCTS,
   ADD_TO_CART,
-  FILTER_BY_BRAND
+  FILTER_BY_BRAND,
+  ADD_USER
 } from '../actions';
 
 //copie de l'ancien de state de App.js
@@ -10,7 +11,8 @@ const initialState = {
   //utilisé pour n'afficher chaque marque qu'une seule fois
   brands: [],
   brand: "",
-  cartItems: []
+  cartItems: [],
+  users: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -42,6 +44,14 @@ const reducer = (state=initialState, action) => {
       return {
         ...state,
         brand
+      }
+    }
+    case ADD_USER: {
+      const { user } = action
+      const users = state.users.push(user);
+      return {
+        ...state,
+        users
       }
     }
     default:
