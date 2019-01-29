@@ -11,6 +11,7 @@ class SignupPage extends Component {
     this.state = {
       email: "",
       password: "",
+      passwordBis: "",
       firstname: "",
       lastname: "",
       address: ""
@@ -29,19 +30,23 @@ class SignupPage extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const { addUser } = this.props;
-    const { email, password } = this.state;
-    axios.post('/auth/signup', { email, password })
-    .then(response => response.data)
-    .then(user => {
-      addUser(user);
-      this.setState({
-        email: "", password: ""
-      })
-    });
+    const { email, password, passwordBis } = this.state;
+    if (password !== passwordBis) {
+      alert("Attention les deux mots de passe ne coïncident pas");
+    } else {
+      axios.post('/auth/signup', { email, password })
+      .then(response => response.data)
+      .then(user => {
+        addUser(user);
+        this.setState({
+          email: "", password: "", passwordBis: ""
+        })
+      });
+    }
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, passwordBis } = this.state;
     return(
       <Container>
         <Row className="my-3">
@@ -56,7 +61,7 @@ class SignupPage extends Component {
               </Col>
               <Col>
                 <Input
-                  type="email" name="email" id="email" placeholder="email"
+                  type="email" name="email" id="email" placeholder="email" value={email}
                   onChange={this.handleChange}
                 />
               </Col>
@@ -67,7 +72,7 @@ class SignupPage extends Component {
               </Col>
               <Col>
                 <Input 
-                  type="password" name="password" id="password" placeholder="password"
+                  type="password" name="password" id="password" placeholder="mot de passe" value={password}
                   onChange={this.handleChange}
                 />
               </Col>
@@ -78,7 +83,8 @@ class SignupPage extends Component {
               </Col>
               <Col>
               <Input
-                type="password" name="passwordBis" id="passwordBis" placeholder="mot de passe"
+                type="password" name="passwordBis" id="passwordBis" placeholder="vérification du mot de passe" value={passwordBis}
+                onChange={this.handleChange}
               />
               </Col>
             </Row>
