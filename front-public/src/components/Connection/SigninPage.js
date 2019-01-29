@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import { Button, Form, Label, Input } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
 import axios from 'axios';
-import { addUser } from '../../actions';
+import jwtDecode from 'jwt-decode';
+import { selectUser } from '../../actions';
 
-class SignupPage extends Component {
+class SigninPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      passwordBis: "",
-      firstname: "",
-      lastname: "",
-      address: ""
     }
     this.handleChange=this.handleChange.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
@@ -29,31 +26,32 @@ class SignupPage extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { addUser } = this.props;
-    const { email, password, passwordBis } = this.state;
-    if (password !== passwordBis) {
-      alert("Attention les deux mots de passe ne coïncident pas");
-    } else {
-      axios.post('/auth/signup', { email, password })
-      .then(response => response.data)
-      .then(user => {
-        addUser(user);
-        this.setState({
-          email: "", password: "", passwordBis: ""
-        })
-      });
-    }
+    const { selectUser } = this.props;
+    const { email, password } = this.state;
+    axios.post('/auth/signin', { email, password })
+    .then(response => response.data)
+    .then(data => {
+      const { token } = data;
+      const decoded = jwtDecode(token);
+      selectUser(decoded);
+      alert('Vous êtes bien connecté à votre espace client');
+      this.setState({
+        email: "", password: ""
+      })
+    })
+    .catch (err => {
+      return alert('Erreur d\'identification, veuillez réessayer.')
+    });
   };
 
   render() {
-    const { email, password, passwordBis } = this.state;
+    const { email, password } = this.state;
     return(
       <Row className="my-3">
         <Form 
-          // style={{ width: "100%"}}
           onSubmit={this.handleSubmit}
         >
-          <h3 className="my-3">Créer votre compte utilisateur</h3>
+          <h3 className="my-3">Connectez-vous à votre compte utilisateur</h3>
           <Row>
             <Col md="3">
               <Label for="email">Email :</Label>
@@ -76,26 +74,15 @@ class SignupPage extends Component {
               />
             </Col>
           </Row>
-          <Row>
-            <Col md="3">
-              <Label for="passwordBis">Mot de passe (bis) :</Label>
-            </Col>
-            <Col>
-            <Input
-              type="password" name="passwordBis" id="passwordBis" placeholder="vérification du mot de passe" value={passwordBis}
-              onChange={this.handleChange}
-            />
-            </Col>
-          </Row>
           <Button type="submit">Envoyer</Button>
         </Form>
       </Row>
-    );
-  }
+    )
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
-  addUser: (email, password) => dispatch(addUser(email, password))
+  selectUser: (email, password) => dispatch(selectUser(email, password))
 });
 
-export default connect(null, mapDispatchToProps)(SignupPage);
+export default connect(null, mapDispatchToProps)(SigninPage);

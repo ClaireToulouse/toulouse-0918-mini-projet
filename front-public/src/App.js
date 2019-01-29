@@ -8,6 +8,7 @@ import CartContainer from './containers/CartContainer';
 
 import './App.css';
 import SignupPage from './components/Connection/SignupPage';
+import SigninPage from './components/Connection/SigninPage';
 
 class App extends Component {
   render() {
@@ -38,6 +39,11 @@ class App extends Component {
             path="/signup"
             exact
             component={SignupPage}
+          />
+          <Route
+            path="/signin"
+            exact
+            component={SigninPage}
           />
 
           <Route

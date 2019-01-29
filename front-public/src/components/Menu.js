@@ -67,17 +67,19 @@ class Menu extends Component {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  Connexion
+                  Se connecter
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>
+                    <Link to='/signin' tag={Link}>Se connecter</Link>
+                  </DropdownItem>
+                  {/* <DropdownItem>
                     <div>
                       <input type="email" value="email" placeholder="votre email" />
                       <br/>
                       <input type="password" value="password" placeholder="votre mot de passe" />
-                    {/* onClick={() => filterByBrand('')}><strong>Tous nos vélos</strong>   */}
                     </div>
-                  </DropdownItem>
+                  </DropdownItem> */}
                   <DropdownItem>
                     <Link to='/signup' tag={Link}>Pas encore inscrit?</Link>
                   </DropdownItem>

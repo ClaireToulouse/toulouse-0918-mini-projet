@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Container, Row } from 'reactstrap';
+import SignupPage from './SignupPage';
+import SigninPage from './SigninPage';
+import ProfileEditor from './ProfileEditor';
 
-class ConnectionPage extends Component {
-  render() {
-    return(
-      <div></div>
-    )
-  }
+const ConnectionPage = () => {
+  <Container>
+    <Row>
+      <SigninPage />
+      <SignupPage />
+      <ProfileEditor />
+    </Row>
+  </Container>
 }
 
 export default ConnectionPage;

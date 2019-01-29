@@ -74,8 +74,9 @@ router.post('/signin', (req, res) => {
         error: 'Email ou mot de passe incorrect'
       });
     }
-    // 3. véerifer que passw reçu = passw encrypté dans bdd
+    // 3. vérifer que passw reçu = passw encrypté dans bdd
     const user = users[0];
+    console.log(user);
     bcrypt.compare(password, user.password, (error, passwordMatch) => {
       if (error) {
         return res.status(500).json({
@@ -87,11 +88,14 @@ router.post('/signin', (req, res) => {
           error: 'Email ou mot de passe incorrect'
         });
       }
+      const { id } = user;
       // 4. générer jwt pour authentifier futures requêtes
-      jwt.sign(user, secretKey, (err, token) => {
+      // ajouter clés (firstName, avatar à 'id')
+      jwt.sign({ id }, secretKey, (err, token) => {
         if (err) {
+          console.log('r', err);
           return res.status(401).json({
-            error: 'JWT generation failed'
+            error: 'JWT generation failed',
           });
         }
         return res.json({
