@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Container, Row } from 'reactstrap';
 
 class SignupPage extends Component {
@@ -9,17 +9,15 @@ class SignupPage extends Component {
         <Row className="my-3">
           <Form style={{ width: "100%"}}>
             <h3>Créer votre compte utilisateur</h3>
+              <Label for="email">Indiquez votre email</Label>
+              <Input type="email" name="email" id="email" placeholder="email" />
             <FormGroup>
-              <Label for="exampleEmail">Indiquez votre email</Label>
-              <Input type="email" name="email" id="exampleEmail" placeholder="email" />
+              <Label for="password">Indiquez votre mot de passe</Label>
+              <Input type="password" name="password" id="password" placeholder="mot de passe" />
             </FormGroup>
             <FormGroup>
-              <Label for="examplePassword">Indiquez votre mot de passe</Label>
-              <Input type="password" name="password" id="examplePassword" placeholder="mot de passe" />
-            </FormGroup>
-            <FormGroup>
-              <Label for="examplePassword">Vérifiez votre mot de passe</Label>
-              <Input type="password" name="password" id="examplePassword" placeholder="mot de passe" />
+              <Label for="passwordBis">Vérifiez votre mot de passe</Label>
+              <Input type="password" name="passwordBis" id="passwordBis" placeholder="mot de passe" />
             </FormGroup>
             <Button>Envoyer</Button>
           </Form>

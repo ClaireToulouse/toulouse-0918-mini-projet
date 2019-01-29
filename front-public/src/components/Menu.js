@@ -31,11 +31,17 @@ class Menu extends Component {
   }
 
   render() {
-    const {brands, filterByBrand} = this.props;
+    const { brands, filterByBrand } = this.props;
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand >MonVéloElectrique</NavbarBrand>
+          <NavbarBrand>
+            <NavLink 
+            onClick={() => filterByBrand('')}
+            to="/" tag={Link}>MonVéloElectrique</NavLink>
+              
+
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

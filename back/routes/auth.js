@@ -28,7 +28,7 @@ const router = express.Router();
 //   return next();
 // };
 const checkAuthorizationHeader = expressJwt({
-  key: secretKey
+  secret: secretKey
 });
 
 router.get('/confidential-info', checkAuthorizationHeader, (req, res) => {

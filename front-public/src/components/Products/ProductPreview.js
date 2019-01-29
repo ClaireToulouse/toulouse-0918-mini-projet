@@ -13,7 +13,7 @@ class ProductPreview extends Component{
           <CardBody>
             <CardTitle><h3>{label}</h3></CardTitle>
             <CardSubtitle>{description}</CardSubtitle>
-            <CardText my-2><strong>{price} euros TTC</strong></CardText>
+            <CardText className="my-2"><strong>{price} euros TTC</strong></CardText>
           </CardBody>
         </Link>
       </Card>

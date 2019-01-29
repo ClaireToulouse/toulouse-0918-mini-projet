@@ -22,6 +22,11 @@ class App extends Component {
             component={ProductListContainer}
           />
           <Route
+            path="/filter"
+            exact
+          >
+          </Route>
+          <Route
             path="/product/:slug"
             render={props => <ProductDetails {...props} />}
           />
