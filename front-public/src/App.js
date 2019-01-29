@@ -7,6 +7,7 @@ import ProductListContainer from './containers/ProductListContainer';
 import CartContainer from './containers/CartContainer';
 
 import './App.css';
+import SignupPage from './components/Connection/SignupPage';
 
 class App extends Component {
   render() {
@@ -21,11 +22,6 @@ class App extends Component {
             component={ProductListContainer}
           />
           <Route
-            path="/all"
-            exact
-            component={ProductListContainer}
-          />
-          <Route
             path="/product/:slug"
             render={props => <ProductDetails {...props} />}
           />
@@ -33,6 +29,12 @@ class App extends Component {
             path="/orders"
             exact
           />
+          <Route
+            path="/signup"
+            exact
+            component={SignupPage}
+          />
+
           <Route
             path="/cart"
             exact
