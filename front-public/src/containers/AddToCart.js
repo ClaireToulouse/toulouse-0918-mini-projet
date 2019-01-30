@@ -30,7 +30,7 @@ class AddToCart extends Component {
   render() {
     const { count } = this.state;
     const { addToCart } = this.props;
-    const { id } = this.props.product;
+    const { id, price } = this.props.product;
     return(
       <div className="">
           <Row>
@@ -48,7 +48,7 @@ class AddToCart extends Component {
             <Col lg="6">
               <Button
                 onClick={
-                  () => addToCart(count, id)
+                  () => addToCart(count, id, price)
                 }
                 style={{ color: 'white', backgroundColor: 'green', border: 'none' }}
               >Ajouter au panier</Button>
@@ -60,7 +60,7 @@ class AddToCart extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: (count, id) => dispatch(addToCart(count, id))
+  addToCart: (count, id, price) => dispatch(addToCart(count, id, price))
 })
 
 export default connect(null, mapDispatchToProps)(AddToCart);

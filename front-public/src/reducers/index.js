@@ -33,8 +33,8 @@ const reducer = (state=initialState, action) => {
       }
     }
     case ADD_TO_CART: {
-      const { quantity, id } = action;
-      const cartItems = [...state.cartItems, {quantity, id}];
+      const { quantity, id, price } = action;
+      const cartItems = [...state.cartItems, {quantity, id, price}];
       return {
         ...state,
         cartItems

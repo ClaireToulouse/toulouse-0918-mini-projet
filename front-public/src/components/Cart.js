@@ -20,7 +20,7 @@ class Cart extends Component {
   }
 
   render(){
-    const { selectedProducts, history } = this.props;
+    const { selectedProducts, history, submitOrder } = this.props;
     const totalPrice = this.calculateTotalPrice();
     console.log(selectedProducts);   
     return(
@@ -82,7 +82,9 @@ class Cart extends Component {
               </tr>
             </tbody>
           </Table>
-          <Button className="text-right">Valider la commande</Button>
+          <Button 
+            className="text-right"
+            onClick={submitOrder}>Valider la commande</Button>
         </Row>
       </Container>    
     )

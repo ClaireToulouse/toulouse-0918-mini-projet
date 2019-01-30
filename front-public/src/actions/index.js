@@ -9,9 +9,9 @@ export const fetchAllProducts = (products) => ({
   products
 });
 
-export const addToCart = (quantity, id) => ({
+export const addToCart = (quantity, id, price) => ({
   type : 'ADD_TO_CART',
-  quantity, id
+  quantity, id, price
 });
 
 export const filterByBrand = brand => ({
