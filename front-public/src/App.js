@@ -14,8 +14,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FetchProducts/>
         <Menu />
+        <FetchProducts/>
         <Switch>
           <Route
             path="/"

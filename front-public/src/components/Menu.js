@@ -34,7 +34,7 @@ class Menu extends Component {
     const { brands, filterByBrand } = this.props;
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" light expand="md" className="fixed-top">
           <NavbarBrand>
             <NavLink 
             onClick={() => filterByBrand('')}

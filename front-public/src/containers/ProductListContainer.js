@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import ProductList from '../components/Products/ProductList';
 
 const ProductListContainer = ({ products }) => (
-  <div>
-    <img src="/images/central-park-535645_960_720.jpg" alt="city park" className="homepage-image"/>
+  <div className="homepage-image">
     <ProductList products={products} />
   </div>
 );

@@ -7,10 +7,10 @@ class ProductList extends Component {
     const {products} = this.props;
     return(
       <Container>
-        <Row className="d-flex justify-content-around">
+        <Row className="d-flex justify-content-around py-5" style={{ marginTop: '68px'}}>
           {
             products.map(product =>
-              <Col lg="4" md="6" sm="12" key={product.id}>
+              <Col lg="4" md="6" sm="12" key={product.id} className="my-3" style={{ minHeight: "100%" }}>
                 <ProductPreview
                   product={product}
                 />

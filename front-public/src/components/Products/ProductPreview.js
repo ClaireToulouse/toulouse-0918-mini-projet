@@ -7,7 +7,7 @@ class ProductPreview extends Component{
     const {product} = this.props;
     const { label, picture, description, price, slug } = product;
     return(
-      <Card className="border-0" height="100%">
+      <Card className="border-0" style={{ height: "100%" }}>
         <Link to={`/product/${slug}`}>
           <CardImg top width="100%" src={picture} alt={label}/>
           <CardBody>

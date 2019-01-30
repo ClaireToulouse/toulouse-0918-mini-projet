@@ -4,11 +4,11 @@
 }
 
 .homepage-image {
-   /* Fixe l'image en haut à gauche de la page */
- /* position: fixed; 
- /* top: 0; 
- left: 0;  */
- /* Préserve le ratio de l'image */
- /* min-width: 100%;
- min-height: 100%; */
+  background-image: url("./images/central-park-535645_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
+/* .card-body.background-color:hover {
+  color: green;
+} */
