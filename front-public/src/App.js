@@ -10,6 +10,10 @@ import './App.css';
 import SignupPage from './components/Connection/SignupPage';
 import SigninPage from './components/Connection/SigninPage';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+library.add(faTrashAlt);
+
 class App extends Component {
   render() {
     return (

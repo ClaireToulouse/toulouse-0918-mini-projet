@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
-import { Container, Row, Col, Button, Alert } from 'reactstrap';
+import { Container, Row, Col, Button, Alert, Label, Input } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Cart extends Component {
   constructor(props){
@@ -42,6 +43,11 @@ class Cart extends Component {
                 <th>Produit</th>
                 <th>Prix unitaire</th>
                 <th>Prix total</th>
+                <th><FontAwesomeIcon
+               icon="trash-alt"
+               style={{ fontSize: '1rem', color: 'orange' }}
+               className="mr-3"
+              /></th>
               </tr>
             </thead>
             <tbody>
@@ -61,6 +67,9 @@ class Cart extends Component {
                     </td>
                     <td>{selectedProduct.price} euros TTC</td>
                     <td><strong>{selectedProduct.totalPrice} euros TTC</strong></td>
+                    <td className="">
+                      <Input type="checkbox" id="checkbox" />
+                    </td>
                   </tr>
                 )
               }

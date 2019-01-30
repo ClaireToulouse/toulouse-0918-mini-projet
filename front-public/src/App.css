@@ -23,6 +23,10 @@
   align-self: right;
 }
 
+.cart .checkbox {
+  align-self: center;
+}
+
 .contact-us .btn-secondary:hover {
   background-color: #323131;
 }
