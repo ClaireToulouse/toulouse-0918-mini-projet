@@ -17,7 +17,6 @@ class CartContainer extends Component {
     .then(order => 
     console.log(order)
     );
-
   }
 
   render(){

@@ -14,7 +14,15 @@ router.post('/', fakeCheckAuthentication, (req, res) => {
   db.queryAsync('INSERT INTO `order` SET ?', { userId })
     .then(results => results.insertId) // recup de l'id de la commande
     .then(orderId => {
-      res.sendStatus(200);
+      const items = req.body.map(item => ({
+        productId: item.id,
+        price: item.price,
+        quantity: item.quantity,
+        orderId
+      }));
+      const promises = items.map(item => db.queryAsync('INSERT INTO order_product SET ?', item));
+      return Promise.all(promises)
+        .then(() => res.sendStatus(201));
     })
     .catch(err => res.status(500).json({
       err: err.message,
