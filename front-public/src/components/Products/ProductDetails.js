@@ -25,7 +25,7 @@ class ProductDetails extends Component {
   render(){
     const { label, picture, description, price, id, specs } = this.state.product;
     return(
-      <Container>
+      <Container style={{ marginTop: '68px'}}>
         <p
           onClick={() => this.props.history.goBack()}
           className="hover d-inline-flex d-flex align-items-center px-2"
