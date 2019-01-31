@@ -3,7 +3,8 @@ import {
   ADD_TO_CART,
   FILTER_BY_BRAND,
   ADD_USER,
-  SELECT_USER
+  SELECT_USER,
+  FETCH_MY_ORDERS
 } from '../actions';
 
 //copie de l'ancien de state de App.js
@@ -13,7 +14,8 @@ const initialState = {
   brands: [],
   brand: "",
   cartItems: [],
-  user: null
+  user: null,
+  orders: []
 }
 
 const reducer = (state=initialState, action) => {
@@ -60,6 +62,13 @@ const reducer = (state=initialState, action) => {
       return({
         ...state,
         user
+      })
+    }
+    case FETCH_MY_ORDERS: {
+      const { orders } = action;
+      return({
+        ...state,
+        orders
       })
     }
     default:

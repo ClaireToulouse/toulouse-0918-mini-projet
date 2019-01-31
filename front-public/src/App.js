@@ -5,6 +5,7 @@ import ProductDetails from './components/Products/ProductDetails';
 import Menu from './components/Menu';
 import ProductListContainer from './containers/ProductListContainer';
 import CartContainer from './containers/CartContainer';
+import OrdersContainer from './containers/OrdersContainer';
 
 import './App.css';
 import SignupPage from './components/Connection/SignupPage';
@@ -38,6 +39,7 @@ class App extends Component {
           <Route
             path="/orders"
             exact
+            component={OrdersContainer}
           />
           <Route
             path="/signup"
