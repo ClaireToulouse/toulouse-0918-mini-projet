@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Container, Row, Col, Table, Input } from 'reactstrap';
 import axios from 'axios';
 import { fetchMyOrders } from '../actions';
-
+import formatDate from '../helpers/formatDate';
 
 class OrdersContainer extends Component {
   componentDidMount(){
@@ -27,8 +27,7 @@ class OrdersContainer extends Component {
                 <Table hover>
                   <thead>
                     <tr>
-                      <th>Ma commande réf {order.id}</th>
-                      <th></th>
+                      <th>Ma commande du {formatDate(order.createDate)} :</th>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -36,7 +35,6 @@ class OrdersContainer extends Component {
                   </thead>
                   <thead>
                     <tr>
-                      <th>Date</th>
                       <th>Qté</th>
                       <th>Produit</th>
                       <th>Prix unitaire</th>
@@ -45,7 +43,6 @@ class OrdersContainer extends Component {
                   </thead>
                   <tbody>
                     <tr>  
-                      <td>{order.createDate.slice(0,10)}</td>
                       <td>{order.quantity}</td>
                       <td>
                         <Row>
@@ -60,7 +57,6 @@ class OrdersContainer extends Component {
                     </tr>
                     <tr>
                       <td><strong>TOTAL</strong></td>
-                      <td></td>
                       <td></td>
                       <td></td>
                       <td><strong> {order.totalPrice} euros TTC</strong></td>

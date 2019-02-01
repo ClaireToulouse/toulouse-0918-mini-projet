@@ -35,11 +35,11 @@ router.get('/', (req, res) => {
   // const userId = req.user.id;
   const userId = 1;
   db.query(
-    `SELECT products.*, \`order\`.id AS orderId, \`order\`.createDate
+    `SELECT products.*, \`order\`.id AS orderId, \`order\`.createDate, quantity
     FROM products
     inner join order_product on products.id = order_product.productId
     inner join \`order\` on order.id = order_product.orderId
-    WHERE \`order\`.userId=?`,
+    WHERE \`order\`.userId=? order by \`order\`.createDate DESC`,
     userId, (err, results) => {
       if (err) {
         res.status(500).send("Erreur lors de l'affichage de votre commande");
